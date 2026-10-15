@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Mail, Phone } from 'lucide-react'
+import { ArrowLeft, Mail, Phone } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
 import { teamMembers } from '../data/team.js'
 
@@ -11,10 +11,10 @@ export default function TeamSection() {
       <div className="container-lux">
         {/* Header */}
         <div className={`text-center mb-12 md:mb-16 fade-up ${isVisible ? 'is-visible' : ''}`}>
-          <span className="section-label">Our Team</span>
-          <h2 className="section-title mt-4">Meet the Experts</h2>
+          <span className="section-label">تیم ما</span>
+          <h2 className="section-title mt-4">با متخصصان آشنا شوید</h2>
           <p className="mt-4 text-base text-navy/50 max-w-xl mx-auto">
-            A dedicated team of professionals committed to delivering exceptional results for every client.
+            تیمی از متخصصان متعهد که برای هر مشتری نتایجی استثنایی به ارمغان می‌آورند.
           </p>
         </div>
 
@@ -35,18 +35,18 @@ export default function TeamSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                {/* Social links on hover */}
+                {/* Contact links on hover */}
                 <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
                   <a
                     href={`mailto:${member.email}`}
-                    aria-label={`Email ${member.name}`}
+                    aria-label={`ایمیل به ${member.name}`}
                     className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300"
                   >
                     <Mail size={15} strokeWidth={1.5} />
                   </a>
                   <a
                     href={`tel:${member.phone}`}
-                    aria-label={`Call ${member.name}`}
+                    aria-label={`تماس با ${member.name}`}
                     className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300"
                   >
                     <Phone size={15} strokeWidth={1.5} />
@@ -62,8 +62,8 @@ export default function TeamSection() {
         {/* View all link */}
         <div className={`text-center mt-12 fade-up ${isVisible ? 'is-visible' : ''}`}>
           <Link to="/team" className="btn-outline group">
-            Meet the Full Team
-            <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+            مشاهده همه اعضای تیم
+            <ArrowLeft size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:-translate-x-1" />
           </Link>
         </div>
       </div>

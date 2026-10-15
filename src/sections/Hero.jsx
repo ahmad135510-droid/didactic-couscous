@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import HeroVideo from '../components/HeroVideo.jsx'
 import { useScrollScrubVideo, usePrefersReducedMotion } from '../hooks/useScrollScrubVideo.js'
@@ -56,26 +56,26 @@ export default function Hero() {
               className="max-w-4xl"
             >
               <span className="section-label text-gold-light mb-6 block">
-                Premium Real Estate
+                املاک لوکس
               </span>
-              <h1 className="text-hero font-bold text-ivory text-balance">
-                Discover Exceptional
+              <h1 className="text-hero font-serif font-bold text-ivory text-balance">
+                خانه‌های استثنایی
                 <br />
-                Homes &amp; Investments
+                و سرمایه‌گذاری مطمئن
               </h1>
               <p className="mt-6 text-base md:text-lg text-ivory/80 leading-relaxed max-w-2xl mx-auto">
-                Premium properties in prime locations. Find your dream home or the perfect investment with confidence.
+                املاک ممتاز در بهترین موقعیت‌ها. خانه رؤیایی خود یا سرمایه‌گذاری مطمئن را با خیال آسوده انتخاب کنید.
               </p>
               <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link to="/properties" className="btn-primary group">
-                  Explore Properties
-                  <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  مشاهده املاک
+                  <ArrowLeft size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:-translate-x-1" />
                 </Link>
                 <Link
                   to="/contact"
                   className="inline-flex items-center gap-2 rounded-lg border border-ivory/30 px-7 py-3.5 text-sm font-medium text-ivory transition-all duration-300 hover:bg-ivory/10 hover:border-ivory/50"
                 >
-                  Get in Touch
+                  تماس با ما
                 </Link>
               </div>
             </motion.div>

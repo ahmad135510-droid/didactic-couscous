@@ -16,8 +16,8 @@ export default function WhyChooseHorizon() {
 
       <div className="container-lux relative">
         <div className={`text-center mb-12 md:mb-16 fade-up ${isVisible ? 'is-visible' : ''}`}>
-          <span className="section-label text-gold-light">Why Horizon</span>
-          <h2 className="text-section font-bold text-ivory mt-4">A Track Record of Excellence</h2>
+          <span className="section-label text-gold-light">چرا هورایزن</span>
+          <h2 className="text-section font-serif font-bold text-ivory mt-4">کارنامه‌ای از برتری</h2>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
@@ -27,8 +27,8 @@ export default function WhyChooseHorizon() {
               className={`text-center fade-up ${isVisible ? 'is-visible' : ''}`}
               style={{ transitionDelay: `${i * 0.1}s` }}
             >
-              <div className="text-4xl md:text-5xl font-bold text-gold mb-2">{stat.value}</div>
-              <div className="text-sm text-ivory/60 uppercase tracking-wider">{stat.label}</div>
+              <div className="text-3xl md:text-4xl font-serif font-bold text-gold mb-2">{stat.value}</div>
+              <div className="text-sm text-ivory/60">{stat.label}</div>
             </div>
           ))}
         </div>

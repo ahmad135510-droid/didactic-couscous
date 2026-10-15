@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, KeyRound } from 'lucide-react'
+import { ArrowLeft, KeyRound } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
 
 export default function CTA() {
@@ -18,19 +18,19 @@ export default function CTA() {
             </div>
 
             {/* Text */}
-            <div className="flex-1 text-center md:text-left">
+            <div className="flex-1 text-center md:text-right">
               <h2 className="text-2xl md:text-3xl font-bold text-navy">
-                Ready to Find Your Perfect Property?
+                آماده‌اید ملک مورد نظرتان را پیدا کنید؟
               </h2>
               <p className="mt-2 text-base text-navy/50">
-                Let our experts guide you to the right home or investment.
+                بگذارید متخصصان ما شما را به خانه یا سرمایه‌گذاری درست راهنمایی کنند.
               </p>
             </div>
 
             {/* Button */}
             <Link to="/contact" className="btn-primary group shrink-0">
-              Get in Touch
-              <ArrowRight size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+              تماس با ما
+              <ArrowLeft size={16} strokeWidth={1.5} className="transition-transform duration-300 group-hover:-translate-x-1" />
             </Link>
           </div>
         </div>

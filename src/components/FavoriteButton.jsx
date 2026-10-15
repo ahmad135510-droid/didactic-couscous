@@ -12,7 +12,7 @@ export default function FavoriteButton({ propertyId, className = '' }) {
         e.stopPropagation()
         toggleFavorite(propertyId)
       }}
-      aria-label={active ? 'Remove from favorites' : 'Save to favorites'}
+      aria-label={active ? 'حذف از علاقه‌مندی‌ها' : 'افزودن به علاقه‌مندی‌ها'}
       aria-pressed={active}
       className={`flex items-center justify-center w-10 h-10 rounded-full backdrop-blur-sm transition-all duration-300 ${
         active ? 'bg-gold/90 scale-110' : 'bg-navy/30 hover:bg-navy/50'

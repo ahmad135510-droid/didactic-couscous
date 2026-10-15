@@ -4,6 +4,9 @@ import Autoplay from 'embla-carousel-autoplay'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import PropertyCard from './PropertyCard.jsx'
 
+// Embla reads the writing direction from the container, so in the RTL document
+// "previous" moves towards the start of the list (the right-hand side) — hence
+// the arrows point opposite to the LTR version.
 export default function PropertyCarousel({ properties: items }) {
   const [emblaRef, emblaApi] = useEmblaCarousel(
     {
@@ -45,7 +48,7 @@ export default function PropertyCarousel({ properties: items }) {
           {items.map((property) => (
             <div
               key={property.id}
-              className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0 pl-0"
+              className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] min-w-0"
             >
               <PropertyCard property={property} variant="carousel" />
             </div>
@@ -58,18 +61,18 @@ export default function PropertyCarousel({ properties: items }) {
         <button
           onClick={scrollPrev}
           disabled={!canPrev}
-          aria-label="Previous properties"
+          aria-label="املاک قبلی"
           className="w-12 h-12 rounded-full border border-navy/20 flex items-center justify-center text-navy transition-all duration-300 hover:bg-navy hover:text-ivory hover:border-navy disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-navy disabled:hover:border-navy/20"
         >
-          <ChevronLeft size={20} strokeWidth={1.5} />
+          <ChevronRight size={20} strokeWidth={1.5} />
         </button>
         <button
           onClick={scrollNext}
           disabled={!canNext}
-          aria-label="Next properties"
+          aria-label="املاک بعدی"
           className="w-12 h-12 rounded-full border border-navy/20 flex items-center justify-center text-navy transition-all duration-300 hover:bg-navy hover:text-ivory hover:border-navy disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-navy disabled:hover:border-navy/20"
         >
-          <ChevronRight size={20} strokeWidth={1.5} />
+          <ChevronLeft size={20} strokeWidth={1.5} />
         </button>
       </div>
     </div>

@@ -29,12 +29,17 @@ export default {
         warmgray: '#F8F9FA',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+        // Persian UI/body face, then a Persian-safe fallback stack.
+        sans: ['Vazirmatn', 'Tahoma', 'system-ui', 'sans-serif'],
+        // Persian display face for headlines (falls back to Vazirmatn if a glyph
+        // such as a Persian digit is missing).
+        serif: ['"Markazi Text"', 'Vazirmatn', 'Georgia', 'serif'],
       },
       fontSize: {
-        'hero': ['clamp(2.5rem, 5vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'section': ['clamp(2rem, 3.5vw, 3rem)', { lineHeight: '1.15', letterSpacing: '-0.01em' }],
+        // Persian script needs more leading than Latin, never negative tracking
+        // (letter-spacing visually breaks the joined letters of the script).
+        'hero': ['clamp(2rem, 4.6vw, 4rem)', { lineHeight: '1.35', letterSpacing: '0' }],
+        'section': ['clamp(1.6rem, 3.2vw, 2.6rem)', { lineHeight: '1.45', letterSpacing: '0' }],
       },
       spacing: {
         '18': '4.5rem',

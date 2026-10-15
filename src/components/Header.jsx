@@ -4,12 +4,12 @@ import { Phone, Menu, X } from 'lucide-react'
 import Logo from './Logo.jsx'
 
 const navLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'Properties', path: '/properties' },
-  { label: 'About Us', path: '/about' },
-  { label: 'Services', path: '/services' },
-  { label: 'Team', path: '/team' },
-  { label: 'Contact', path: '/contact' },
+  { label: 'خانه', path: '/' },
+  { label: 'املاک', path: '/properties' },
+  { label: 'درباره ما', path: '/about' },
+  { label: 'خدمات', path: '/services' },
+  { label: 'تیم', path: '/team' },
+  { label: 'تماس', path: '/contact' },
 ]
 
 export default function Header() {
@@ -46,7 +46,7 @@ export default function Header() {
       }`}
     >
       <nav className="container-lux flex items-center justify-between">
-        <Link to="/" aria-label="Horizon Properties home">
+        <Link to="/" aria-label="صفحه اصلی املاک هورایزن">
           <Logo variant={solid ? 'dark' : 'light'} />
         </Link>
 
@@ -64,7 +64,7 @@ export default function Header() {
                 >
                   {link.label}
                   <span
-                    className={`absolute -bottom-1.5 left-0 h-px bg-gold transition-all duration-300 ease-luxury ${
+                    className={`absolute -bottom-1.5 start-0 h-px bg-gold transition-all duration-300 ease-luxury ${
                       active ? 'w-full' : 'w-0 group-hover:w-full'
                     }`}
                   />
@@ -84,14 +84,14 @@ export default function Header() {
           }`}
         >
           <Phone size={15} strokeWidth={1.5} />
-          (555) 246-7890
+          <span dir="ltr">(555) 246-7890</span>
         </a>
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden p-2 -mr-2"
+          className="lg:hidden p-2 -me-2"
           onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+          aria-label={mobileOpen ? 'بستن منو' : 'باز کردن منو'}
           aria-expanded={mobileOpen}
         >
           {mobileOpen ? (
@@ -131,7 +131,7 @@ export default function Header() {
             className="mt-6 inline-flex items-center gap-2 rounded-lg border border-navy/30 px-5 py-3 text-sm font-medium text-navy"
           >
             <Phone size={16} strokeWidth={1.5} />
-            (555) 246-7890
+            <span dir="ltr">(555) 246-7890</span>
           </a>
         </div>
       </div>

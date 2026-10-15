@@ -1,7 +1,8 @@
 import { useState, useCallback, useEffect } from 'react'
 import { X, ChevronLeft, ChevronRight, Expand } from 'lucide-react'
+import { faNumber } from '../utils/format.js'
 
-export default function ImageGallery({ images, altPrefix = 'Property' }) {
+export default function ImageGallery({ images, altPrefix = 'ملک' }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [fullscreen, setFullscreen] = useState(false)
 
@@ -15,10 +16,12 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
 
   useEffect(() => {
     if (!fullscreen) return
+    // In RTL the arrow keys follow the physical direction of travel: left moves
+    // forward through the gallery, right moves back.
     const onKey = (e) => {
       if (e.key === 'Escape') setFullscreen(false)
-      if (e.key === 'ArrowRight') goNext()
-      if (e.key === 'ArrowLeft') goPrev()
+      if (e.key === 'ArrowLeft') goNext()
+      if (e.key === 'ArrowRight') goPrev()
     }
     window.addEventListener('keydown', onKey)
     document.body.style.overflow = 'hidden'
@@ -36,7 +39,7 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
         <div className="relative rounded-xl2 overflow-hidden aspect-[16/10] group">
           <img
             src={images[activeIndex]}
-            alt={`${altPrefix} — image ${activeIndex + 1}`}
+            alt={`${altPrefix} — تصویر ${faNumber(activeIndex + 1)}`}
             className="w-full h-full object-cover transition-transform duration-700 ease-luxury group-hover:scale-105"
           />
 
@@ -45,17 +48,17 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
             <>
               <button
                 onClick={goPrev}
-                aria-label="Previous image"
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-navy hover:bg-ivory transition-all duration-300 opacity-0 group-hover:opacity-100"
+                aria-label="تصویر قبلی"
+                className="absolute start-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-navy hover:bg-ivory transition-all duration-300 opacity-0 group-hover:opacity-100"
               >
-                <ChevronLeft size={20} strokeWidth={1.5} />
+                <ChevronRight size={20} strokeWidth={1.5} />
               </button>
               <button
                 onClick={goNext}
-                aria-label="Next image"
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-navy hover:bg-ivory transition-all duration-300 opacity-0 group-hover:opacity-100"
+                aria-label="تصویر بعدی"
+                className="absolute end-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-ivory/80 backdrop-blur-sm flex items-center justify-center text-navy hover:bg-ivory transition-all duration-300 opacity-0 group-hover:opacity-100"
               >
-                <ChevronRight size={20} strokeWidth={1.5} />
+                <ChevronLeft size={20} strokeWidth={1.5} />
               </button>
             </>
           )}
@@ -63,15 +66,15 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
           {/* Fullscreen button */}
           <button
             onClick={() => setFullscreen(true)}
-            aria-label="View fullscreen"
-            className="absolute top-4 right-4 w-11 h-11 rounded-full bg-navy/40 backdrop-blur-sm flex items-center justify-center text-ivory hover:bg-navy/60 transition-all duration-300"
+            aria-label="نمایش تمام‌صفحه"
+            className="absolute top-4 end-4 w-11 h-11 rounded-full bg-navy/40 backdrop-blur-sm flex items-center justify-center text-ivory hover:bg-navy/60 transition-all duration-300"
           >
             <Expand size={18} strokeWidth={1.5} />
           </button>
 
           {/* Counter */}
-          <div className="absolute bottom-4 right-4 px-3 py-1.5 rounded-full bg-navy/40 backdrop-blur-sm text-xs text-ivory font-medium">
-            {activeIndex + 1} / {images.length}
+          <div className="absolute bottom-4 end-4 px-3 py-1.5 rounded-full bg-navy/40 backdrop-blur-sm text-xs text-ivory font-medium">
+            {faNumber(activeIndex + 1)} از {faNumber(images.length)}
           </div>
         </div>
 
@@ -82,14 +85,14 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                aria-label={`View image ${i + 1}`}
+                aria-label={`نمایش تصویر ${faNumber(i + 1)}`}
                 className={`flex-[0_0_100px] aspect-[4/3] rounded-lg overflow-hidden transition-all duration-300 ${
                   i === activeIndex
                     ? 'ring-2 ring-gold ring-offset-2 ring-offset-ivory'
                     : 'opacity-50 hover:opacity-100'
                 }`}
               >
-                <img src={img} alt={`${altPrefix} thumbnail ${i + 1}`} loading="lazy" className="w-full h-full object-cover" />
+                <img src={img} alt={`${altPrefix} — بندانگشتی ${faNumber(i + 1)}`} loading="lazy" className="w-full h-full object-cover" />
               </button>
             ))}
           </div>
@@ -104,14 +107,14 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
         >
           <button
             onClick={() => setFullscreen(false)}
-            aria-label="Close fullscreen"
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors z-10"
+            aria-label="بستن نمایش تمام‌صفحه"
+            className="absolute top-6 end-6 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors z-10"
           >
             <X size={24} strokeWidth={1.5} />
           </button>
           <img
             src={images[activeIndex]}
-            alt={`${altPrefix} — image ${activeIndex + 1}`}
+            alt={`${altPrefix} — تصویر ${faNumber(activeIndex + 1)}`}
             className="max-w-[90vw] max-h-[85vh] object-contain rounded-lg"
             onClick={(e) => e.stopPropagation()}
           />
@@ -119,22 +122,22 @@ export default function ImageGallery({ images, altPrefix = 'Property' }) {
             <>
               <button
                 onClick={(e) => { e.stopPropagation(); goPrev() }}
-                aria-label="Previous image"
-                className="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors"
+                aria-label="تصویر قبلی"
+                className="absolute start-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors"
               >
-                <ChevronLeft size={24} strokeWidth={1.5} />
+                <ChevronRight size={24} strokeWidth={1.5} />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); goNext() }}
-                aria-label="Next image"
-                className="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors"
+                aria-label="تصویر بعدی"
+                className="absolute end-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-ivory/10 flex items-center justify-center text-ivory hover:bg-ivory/20 transition-colors"
               >
-                <ChevronRight size={24} strokeWidth={1.5} />
+                <ChevronLeft size={24} strokeWidth={1.5} />
               </button>
             </>
           )}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-ivory/10 text-sm text-ivory font-medium">
-            {activeIndex + 1} / {images.length}
+            {faNumber(activeIndex + 1)} از {faNumber(images.length)}
           </div>
         </div>
       )}

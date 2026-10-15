@@ -3,7 +3,9 @@ export default function Logo({ className = '', variant = 'light' }) {
   const subColor = variant === 'light' ? 'rgba(250,249,246,0.6)' : 'rgba(10,25,47,0.55)'
 
   return (
-    <span className={`inline-flex items-center gap-2.5 ${className}`}>
+    // The wordmark stays Latin (it is the brand mark, not copy) — `dir="ltr"`
+    // keeps it in order inside the RTL document.
+    <span dir="ltr" className={`inline-flex items-center gap-2.5 ${className}`}>
       <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         {/* Architectural house outline icon */}
         <path d="M4 13L14 5L24 13" stroke="#C5A059" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />

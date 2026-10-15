@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, Home, TrendingUp, Camera, Compass, Calculator, MapPin } from 'lucide-react'
+import { ArrowLeft, Home, TrendingUp, Camera, Compass, Calculator, MapPin } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
 import { services } from '../data/services.js'
 
@@ -13,10 +13,10 @@ export default function ServicesSection() {
       <div className="container-lux">
         {/* Header */}
         <div className={`max-w-2xl mb-12 md:mb-16 fade-up ${isVisible ? 'is-visible' : ''}`}>
-          <span className="section-label">Our Services</span>
-          <h2 className="section-title mt-4">What We Do</h2>
+          <span className="section-label">خدمات ما</span>
+          <h2 className="section-title mt-4">کار ما چیست</h2>
           <p className="mt-4 text-base text-navy/50">
-            Comprehensive real estate services designed for discerning clients who expect excellence at every step.
+            خدمات جامع املاک، طراحی‌شده برای مشتریان سخت‌پسندی که در هر گام انتظار بهترین‌ها را دارند.
           </p>
         </div>
 
@@ -39,8 +39,8 @@ export default function ServicesSection() {
                   to="/services"
                   className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-gold-dark hover:text-navy transition-colors duration-300"
                 >
-                  Learn More
-                  <ArrowRight size={14} strokeWidth={1.5} className="transition-transform duration-300 group-hover:translate-x-1" />
+                  بیشتر بدانید
+                  <ArrowLeft size={14} strokeWidth={1.5} className="transition-transform duration-300 group-hover:-translate-x-1" />
                 </Link>
               </div>
             )

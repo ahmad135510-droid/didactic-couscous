@@ -1,5 +1,4 @@
-import { Link } from 'react-router-dom'
-import { Mail, Phone, ArrowRight } from 'lucide-react'
+import { Mail, Phone } from 'lucide-react'
 import { useScrollAnimation } from '../hooks/useScrollAnimation.js'
 import { teamMembers } from '../data/team.js'
 import CTA from '../sections/CTA.jsx'
@@ -13,16 +12,16 @@ export default function Team() {
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <img
           src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1920&q=80"
-          alt="Luxury architecture"
+          alt="معماری لوکس"
           className="absolute inset-0 w-full h-full object-cover"
           fetchpriority="high"
         />
         <div className="absolute inset-0 bg-navy/60" />
         <div className="relative h-full container-lux flex flex-col items-center justify-center text-center">
-          <span className="section-label text-gold-light">Our Team</span>
-          <h1 className="text-section font-bold text-ivory mt-4">Meet the Experts</h1>
+          <span className="section-label text-gold-light">تیم ما</span>
+          <h1 className="text-section font-serif font-bold text-ivory mt-4">با متخصصان آشنا شوید</h1>
           <p className="mt-4 text-base text-ivory/70 max-w-xl">
-            Dedicated professionals committed to delivering exceptional results.
+            متخصصانی متعهد که برای ارائه نتایجی استثنایی تلاش می‌کنند.
           </p>
         </div>
       </section>
@@ -46,10 +45,10 @@ export default function Team() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-3 group-hover:translate-y-0">
-                    <a href={`mailto:${member.email}`} aria-label={`Email ${member.name}`} className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300">
+                    <a href={`mailto:${member.email}`} aria-label={`ایمیل به ${member.name}`} className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300">
                       <Mail size={15} strokeWidth={1.5} />
                     </a>
-                    <a href={`tel:${member.phone}`} aria-label={`Call ${member.name}`} className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300">
+                    <a href={`tel:${member.phone}`} aria-label={`تماس با ${member.name}`} className="w-9 h-9 rounded-full bg-ivory/90 flex items-center justify-center text-navy hover:bg-gold transition-colors duration-300">
                       <Phone size={15} strokeWidth={1.5} />
                     </a>
                   </div>

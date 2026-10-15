@@ -1,7 +1,7 @@
 # Horizon Properties — Real Estate Website
 
 ## Overview
-A premium real estate website built with Vite + React, React Router, Tailwind CSS, Framer Motion, and Embla Carousel. The app is a client-side SPA with no backend — property data is stored in `src/data/properties.js` and structured for easy migration to a real API/database.
+A premium, Persian-language (RTL) real estate website built with Vite + React, React Router, Tailwind CSS, Framer Motion, and Embla Carousel. The app is a client-side SPA with no backend — property data is stored in `src/data/properties.js` and structured for easy migration to a real API/database.
 
 ## Tech Stack
 - **Framework:** Vite 5 + React 18
@@ -10,7 +10,7 @@ A premium real estate website built with Vite + React, React Router, Tailwind CS
 - **Animations:** Framer Motion (hero entrance) + Intersection Observer (section fade-ups)
 - **Carousel:** Embla Carousel (drag/swipe, autoplay, keyboard accessible)
 - **Icons:** Lucide React
-- **Fonts:** Inter (body) + Cormorant Garamond (display) via Google Fonts
+- **Fonts:** Vazirmatn (body/UI) + Markazi Text (display headlines) via Google Fonts
 
 ## Development
 ```bash
@@ -34,6 +34,15 @@ src/
 - **Gold:** `#C5A059` — accents, labels, icons, borders
 - **Ivory:** `#FAF9F6` — main background
 - **Warm Gray:** `#F8F9FA` — alternating section background
+
+## Language & direction (site is Persian, RTL)
+`index.html` sets `<html lang="fa" dir="rtl">`, and the document is Persian-only — new copy must be written in Persian.
+
+- **Typography:** `font-sans` = Vazirmatn (all UI/body), `font-serif` = Markazi Text (`.section-title`, hero `h1`, stat numbers). **Never add letter-spacing/tracking to Persian text** — it visually breaks the joined letters of the script; the `text-hero`/`text-section` sizes in `tailwind.config.js` already carry `letter-spacing: 0` plus the extra leading Persian needs.
+- **Directional styles use logical utilities** (`start-*`/`end-*`, `ms-*`/`me-*`, `ps-*`/`pe-*`), never `left`/`right`/`ml`/`mr`/`pl`/`pr`, so overlays and badges stay mirrored correctly (e.g. a card's type badge is `start-4` = top-right, its favourite button `end-4` = top-left).
+- **Arrows point the RTL way:** "go forward" is `ArrowLeft` with `group-hover:-translate-x-1`; gallery/carousel "previous" sits at `start-*` with a `ChevronRight`, "next" at `end-*` with `ChevronLeft`, and the fullscreen arrow keys follow physical travel (left = next). Embla reads the direction from the container, so the carousel mirrors on its own.
+- **Numbers:** import from `src/utils/format.js` — `faNumber` (Persian digits + separators), `faArea`/`sqm` (the data stores `sqft`; Persian listings read square metres), `faDigits`, `faYear` (Jalali year for the footer). Counters read «۱ از ۵», never `1 / 5`.
+- **Keep Latin text LTR:** phone numbers, e-mail addresses and the `HORIZON PROPERTIES` wordmark live in `dir="ltr"` spans (bidi would otherwise mirror their brackets). The wordmark is deliberately not translated.
 
 ## Hero video (scroll-scrubbed)
 The homepage hero is a **paused** video whose timeline is driven by scroll — it is never played and never looped.

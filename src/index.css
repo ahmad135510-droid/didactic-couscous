@@ -16,7 +16,9 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Vazirmatn', Tahoma, system-ui, sans-serif;
+    /* Persian script sits better with a little more leading than Latin. */
+    line-height: 1.75;
     background-color: #FAF9F6;
     color: #0A192F;
     overflow-x: hidden;
@@ -55,11 +57,12 @@
   }
 
   .section-label {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-gold-dark;
+    /* No tracking here: letter-spacing breaks the joined letters of Persian. */
+    @apply text-[13px] font-semibold text-gold-dark;
   }
 
   .section-title {
-    @apply text-section font-bold text-navy tracking-tight;
+    @apply text-section font-serif font-bold text-navy;
   }
 
   .btn-primary {
