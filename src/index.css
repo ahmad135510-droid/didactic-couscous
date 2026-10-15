@@ -89,7 +89,21 @@
   }
 }
 
+/* Hero video loading treatment — a single quiet gold sweep, no spinner. */
+@keyframes hero-load-sweep {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+  to {
+    transform: translate3d(320%, 0, 0);
+  }
+}
+
 @layer utilities {
+  .hero-load-sweep {
+    animation: hero-load-sweep 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  }
+
   .text-balance {
     text-wrap: balance;
   }
