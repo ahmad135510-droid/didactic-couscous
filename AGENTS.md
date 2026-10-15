@@ -18,6 +18,8 @@ docker compose -f docker-compose.base44.yml up -d --build
 ```
 The dev server runs on port 5173 inside the container, mapped to host port 3000. Vite hot reload is active — edits appear live without rebuilding.
 
+The compose `web.command` installs with `npm install --no-audit --no-fund` and then `exec`s `./node_modules/.bin/vite` directly rather than going through `npx`: the install output stays clean (no audit/funding report) and a container restart no longer prints npm's noisy `command failed / SIGTERM` banner. Keep that shape when editing the service.
+
 ## Project Structure
 ```
 src/
