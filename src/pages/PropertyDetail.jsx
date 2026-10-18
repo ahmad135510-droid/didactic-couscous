@@ -220,7 +220,7 @@ export default function PropertyDetail() {
       )}
 
       {/* Mobile sticky CTA */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-ivory/95 backdrop-blur-md border-t border-navy/10 px-4 py-3 flex items-center gap-3">
+      <div className="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-ivory/95 backdrop-blur-md border-t border-navy/10 px-4 py-3 flex items-center gap-3">
         <div className="flex-1">
           <div className="text-lg font-bold text-navy">{property.priceLabel}</div>
           <div className="text-xs text-navy/50">{property.location}</div>

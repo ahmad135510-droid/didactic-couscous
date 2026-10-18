@@ -1,0 +1,31 @@
+# Horizon Properties — SPA hosting (Apache / cPanel / LiteSpeed)
+# All routes are client-side; send every non-file request to index.html.
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Don't rewrite real files or directories
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else → index.html (so /properties, /about, etc. resolve)
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+# Serve the correct MIME type for .mjs modules
+<IfModule mod_mime.c>
+  AddType application/javascript .mjs
+</IfModule>
+
+# Long-cache the hashed build assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+</IfModule>
