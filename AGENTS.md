@@ -1,7 +1,7 @@
 # Horizon Properties — Real Estate Website
 
 ## Overview
-A premium, Persian-language (RTL) real estate website built with Vite + React, React Router, Tailwind CSS, Framer Motion, and Embla Carousel. The app is a client-side SPA with no backend — property data is stored in `src/data/properties.js` and structured for easy migration to a real API/database.
+A premium, Persian-language (RTL) real estate website built with Vite + React, React Router, Tailwind CSS, Framer Motion, and Embla Carousel. The app is a client-side SPA; the only backend is the visit-request service in `api/` (see "Visit-request API" below), which writes property-visit bookings to the owner's Google Calendar. Property data is stored in `src/data/properties.js` and structured for easy migration to a real API/database.
 
 ## Tech Stack
 - **Framework:** Vite 5 + React 18
@@ -70,3 +70,16 @@ How to check it: load `/`, confirm the video is `paused`, scroll slowly/fast/rev
 - Favorites system (localStorage)
 - Responsive across mobile/tablet/desktop
 - Accessible (semantic HTML, ARIA labels, keyboard nav, focus states)
+
+## Visit-request API (Google Calendar)
+The property-detail "درخواست بازدید" button opens `src/components/VisitRequestForm.jsx`, which POSTs to `/api/visit-requests`. In dev the Vite dev server proxies `/api/*` to the `api` compose service (`vite.config.js` `server.proxy`, target `http://api:8000`); in production host the `api` service alongside the static build and proxy to it (single origin avoids CORS / keeps the private key server-side).
+
+`api/server.js` (Node + Express + `googleapis`) inserts a 1-hour event into the calendar identified by `GOOGLE_CALENDAR_ID`, authenticated as a Google service account (`GOOGLE_CLIENT_EMAIL` + `GOOGLE_PRIVATE_KEY`). The private key stays server-side only — it never reaches the browser. Visit times are written as wall-clock strings with `timeZone: Asia/Tehran`, so they are correct regardless of the server's own TZ.
+
+The `api` service boots without credentials (`GET /api/health` reports `calendarConfigured:false`) and the visit endpoint returns 503 `"اتصال تقویم گوگل پیکربندی نشده است."` until they are provided. Provide the three Google secrets via the Base44 dashboard; the platform recreates the `api` service automatically — do **not** run `up`/`restart` yourself for a credential change (two concurrent compose runs wedge the stack).
+
+### One-time Google setup
+1. Google Cloud Console → APIs & Services → enable **Google Calendar API**.
+2. IAM & Admin → Service Accounts → create a service account → Keys → Add key (JSON). The JSON's `client_email` and `private_key` are `GOOGLE_CLIENT_EMAIL` and `GOOGLE_PRIVATE_KEY` (paste the whole `private_key` including its `\n`).
+3. Open your Google Calendar → the calendar's Settings → "Share with specific people" → add the service-account email (`client_email`) with **"Make changes and manage sharing"**.
+4. `GOOGLE_CALENDAR_ID` is the calendar's ID (your Gmail address, or a dedicated calendar's `...@group.calendar.google.com` id from Calendar Settings → Integrate calendar).

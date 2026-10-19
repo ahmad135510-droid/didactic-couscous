@@ -2,5 +2,21 @@
   "previewPort": 3000,
   "healthPath": "/",
   "startCommand": "docker compose -f docker-compose.base44.yml up -d",
-  "secrets": []
+  "secrets": [
+    {
+      "name": "GOOGLE_CLIENT_EMAIL",
+      "description": "ایمیل حساب سرویس گوگل (service account) — از Google Cloud Console → IAM → Service Accounts، به‌صورت xxxxx@xxxxx.iam.gserviceaccount.com",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "GOOGLE_PRIVATE_KEY",
+      "description": "کلید خصوصی حساب سرویس گوگل — فیلد private_key از فایل JSON کلید (شامل \\n)",
+      "requiredAtBoot": false
+    },
+    {
+      "name": "GOOGLE_CALENDAR_ID",
+      "description": "شناسه تقویمی که بازدیدها در آن ثبت می‌شوند — ایمیل گوگل شما یا شناسه یک تقویم اختصاصی. تقویم باید با ایمیل حساب سرویس به اشتراک گذاشته شود.",
+      "requiredAtBoot": false
+    }
+  ]
 }
