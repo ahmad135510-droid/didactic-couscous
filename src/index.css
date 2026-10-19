@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-sans bg-mosque-cream text-gray-800;
+  }
+}
+
+@layer components {
+  .section-title {
+    @apply text-2xl md:text-3xl font-bold text-mosque-dark mb-2;
+  }
+  .section-subtitle {
+    @apply text-sm text-gray-500 mb-8;
+  }
+  .card {
+    @apply bg-white rounded-2xl shadow-lg p-6 transition-transform duration-300 hover:-translate-y-1;
+  }
+  .btn-primary {
+    @apply bg-mosque-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-mosque-dark transition-colors;
+  }
+}
