@@ -24,5 +24,32 @@ services:
       retries: 5
       start_period: 30s
 
+  # Visit-request backend: creates Google Calendar events in the owner's
+  # calendar from the property-detail "درخواست بازدید" form. The Google
+  # service-account private key lives here (never in the browser); the service
+  # boots without credentials and returns 503 on the visit endpoint until they
+  # are provided.
+  api:
+    image: node:22-slim
+    working_dir: /app/api
+    volumes:
+      - ./:/app
+      - api_node_modules:/app/api/node_modules
+    command: ["sh", "-ec", "npm install --no-audit --no-fund && exec node server.js"]
+    environment:
+      - NODE_ENV=development
+      - VISIT_TIMEZONE=Asia/Tehran
+      - CORS_ALLOW_ORIGIN=${CORS_ALLOW_ORIGIN:-}
+    env_file:
+      - /run/base44/app.env
+    restart: on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://localhost:8000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))\""]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
 volumes:
   node_modules:
+  api_node_modules:

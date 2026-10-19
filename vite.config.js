@@ -12,5 +12,13 @@ export default defineConfig({
     allowedHosts: isPreview && process.env.BASE44_SANDBOX_HOST_DOMAIN
       ? [`.${process.env.BASE44_SANDBOX_HOST_DOMAIN}`]
       : undefined,
+    // Forward /api/* to the visit-api compose service so the SPA talks to the
+    // Google-Calendar backend over a single origin (no CORS in dev).
+    proxy: {
+      '/api': {
+        target: process.env.VISIT_API_URL || 'http://api:8000',
+        changeOrigin: true,
+      },
+    },
   },
 })

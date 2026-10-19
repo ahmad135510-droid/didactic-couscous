@@ -5,12 +5,14 @@ import { getPropertyById, getSimilarProperties } from '../data/properties.js'
 import ImageGallery from '../components/ImageGallery.jsx'
 import PropertyCard from '../components/PropertyCard.jsx'
 import FavoriteButton from '../components/FavoriteButton.jsx'
+import VisitRequestForm from '../components/VisitRequestForm.jsx'
 import { faNumber, sqm } from '../utils/format.js'
 
 export default function PropertyDetail() {
   const { id } = useParams()
   const property = getPropertyById(id)
   const [showContactForm, setShowContactForm] = useState(false)
+  const [showVisitForm, setShowVisitForm] = useState(false)
   const [formSent, setFormSent] = useState(false)
 
   if (!property) {
@@ -114,7 +116,7 @@ export default function PropertyDetail() {
                     <Phone size={16} strokeWidth={1.5} />
                     تماس با مشاور
                   </button>
-                  <button className="btn-outline w-full justify-center">
+                  <button onClick={() => setShowVisitForm(true)} className="btn-outline w-full justify-center">
                     <Calendar size={16} strokeWidth={1.5} />
                     درخواست بازدید
                   </button>
@@ -217,6 +219,11 @@ export default function PropertyDetail() {
             </div>
           </div>
         </section>
+      )}
+
+      {/* Visit-request modal (creates a Google Calendar event) */}
+      {showVisitForm && (
+        <VisitRequestForm property={property} onClose={() => setShowVisitForm(false)} />
       )}
 
       {/* Mobile sticky CTA */}
